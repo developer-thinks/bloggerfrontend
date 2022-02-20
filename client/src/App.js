@@ -1,9 +1,26 @@
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import Posts from './components/Posts/Posts.jsx'
+import Form from './components/Form/Form.jsx'
 
 function App() {
   return (
-    <div className="App">
-      <h2> App</h2>
-    </div>
+    <Container maxWidth ='lg'>
+      <AppBar position='static' color='inherit'>
+        <Typography variant='h4' align='center' > Blogger </Typography>
+      </AppBar>
+      <Grow in>
+        <Container>
+          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+            <Grid item xs={12} sm={7}>
+              <Posts />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Form />
+            </Grid>
+          </Grid>
+        </Container>
+      </Grow>
+    </Container>
   );
 }
 
