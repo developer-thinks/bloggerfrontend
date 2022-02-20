@@ -1,12 +1,16 @@
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import Posts from './components/Posts/Posts.jsx'
 import Form from './components/Form/Form.jsx'
+import useStyles from './styles'
 
 function App() {
+
+  const classes = useStyles()
+
   return (
     <Container maxWidth ='lg'>
-      <AppBar position='static' color='inherit'>
-        <Typography variant='h4' align='center' > Blogger </Typography>
+      <AppBar className={classes.appBar} position='static' color='inherit'>
+        <Typography className={classes.heading} variant='h4' align='center' > Blogger </Typography>
       </AppBar>
       <Grow in>
         <Container>
