@@ -1,11 +1,10 @@
 export default (posts = [],action)=>{
     switch (action.type) {
-        case "A":
-            return posts;
-            break;
-    
+        case 'FETCH_ALL':
+            return action.payload;
+        case 'CREATE':
+            return [...posts, action.payload]
         default:
             return posts;
-            break;
     }
 }
