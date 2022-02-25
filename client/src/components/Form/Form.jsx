@@ -14,6 +14,7 @@ const Form = ({currentId, setCurrentId}) => {
   const dispatch = useDispatch()
 
   const clear = () => {
+    setCurrentId(null)
     setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
   };
 
@@ -30,6 +31,7 @@ const Form = ({currentId, setCurrentId}) => {
       dispatch(updatePost(currentId, postData))
     else
       dispatch(createPost(postData))
+    clear()
   };
 
   return (
