@@ -6,7 +6,8 @@ import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../actions/posts';
 
-const Form = () => {
+const Form = (props) => {
+  console.log(props);
   const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
   const classes = useStyles()
   const dispatch = useDispatch()

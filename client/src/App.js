@@ -5,8 +5,11 @@ import useStyles from './styles'
 import {getPosts} from './actions/posts'
 import {useDispatch} from 'react-redux'
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 function App() {
+
+  const [currentId, setCurrentId] = useState(null);
 
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -27,7 +30,7 @@ function App() {
               <Posts />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form Id={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Container>
