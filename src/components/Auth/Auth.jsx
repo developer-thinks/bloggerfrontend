@@ -20,11 +20,13 @@ const Auth = () => {
   const nevigate = useNavigate()
 
 
-  const handleSybmit = (e) =>{
+  const handleSubmit = (e) =>{
       e.preventDefault();
 
       if(isSignUp){
         dispatch(signUp(form,nevigate))
+        setIsSignUp(false)
+        nevigate('/auth')
       } else {
         dispatch(signIn(form,nevigate))
       }
@@ -36,13 +38,27 @@ const Auth = () => {
 
   const switchMode = () =>{
     setIsSignUp((prevState)=> !prevState)
+    console.log(isSignUp)
   }
 
   const googleSuccess = async (res) => {
     console.log(res);
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+
+    try {
+      dispatch({ type: 'AUTH', data: { result, token } });
+
+      nevigate('/')
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
+  const googleError = (err) => {
+    console.log(err);
+    console.log('Google Sign In was unsuccessful. Try again later');
+  }
 
 
   return (
@@ -52,7 +68,7 @@ const Auth = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography variant='h5'> {isSignUp ? 'SignUp' : 'SignIn'} </Typography>
-        <form className={classes.form} onSubmit={handleSybmit} >
+        <form className={classes.form} onSubmit={handleSubmit} >
           <Grid container spacing={2} >
             {
               isSignUp &&(
@@ -69,8 +85,8 @@ const Auth = () => {
            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             { isSignUp ? 'Sign Up' : 'Sign In' }
           </Button>
-          {/* <GoogleLogin 
-            clientId=''
+          <GoogleLogin 
+            clientId="800800043238-kolheb49s80m3ap8m3di39hltp0r4kqs.apps.googleusercontent.com"
             render={(renderProps)=>(
               <Button 
                 className={classes.googleButton} 
@@ -78,7 +94,7 @@ const Auth = () => {
                 fullWidth
                 variant='outlined'
                 onClick={renderProps.onClick}
-                // disabled={renderProps.disabled}
+                disabled={renderProps.disabled}
                 startIcon={<Icon />}
                 >
                 Sign In with Google
@@ -87,7 +103,7 @@ const Auth = () => {
             onSuccess={googleSuccess}
             onFailure={googleError}
             cookiePolicy="single_host_origin"
-          /> */}
+          />
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
