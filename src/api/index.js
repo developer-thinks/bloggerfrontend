@@ -1,7 +1,6 @@
 import Axios from 'axios'
 
-//baseURL: 'https://bloggermern.herokuapp.com/'
-const API = Axios.create({ baseURL: 'http://localhost:8000/' });
+const API = Axios.create({ baseURL: 'https://bloggermern.herokuapp.com/' });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
