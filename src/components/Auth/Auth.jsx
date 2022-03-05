@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import {GoogleLogin} from 'react-google-login'
 import useStyles from './styles'
@@ -38,11 +38,9 @@ const Auth = () => {
 
   const switchMode = () =>{
     setIsSignUp((prevState)=> !prevState)
-    console.log(isSignUp)
   }
 
   const googleSuccess = async (res) => {
-    console.log(res);
     const result = res?.profileObj;
     const token = res?.tokenId;
 
